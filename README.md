@@ -1,5 +1,12 @@
 # 5G00EV06-3001-tiihonen-laura-project
 
+29/11/2021
+
+- Code is commented
+- Styling is done
+
+---
+
 21/11/2021
 
 - User can see visual UI, most of styling done

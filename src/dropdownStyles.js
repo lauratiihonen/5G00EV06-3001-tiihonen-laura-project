@@ -1,10 +1,13 @@
+//React Select styles to the dropdown menu
 const customStyles = {
+  //Menu opened
   menu: (provided, state) => ({
     ...provided,
     width: "23rem",
     backgroundColor: "grey",
     padding: "1rem",
   }),
+  //Menu options
   option: (provided, state) => ({
     ...provided,
     backgroundColor: state.isSelected ? "white" : "grey",
@@ -12,32 +15,29 @@ const customStyles = {
     textAlign: "center",
     color: "white",
   }),
+  //Departure and destination text
   placeholder: (provided, state) => ({
     ...provided,
     color: "white",
   }),
+  //Menu container placement
   container: (provided, state) => ({
     ...provided,
     width: "25rem",
     padding: "1rem",
     textAlign: "center",
   }),
-  indicatorsContainer: (provided, state) => ({
-    ...provided,
-    backgroundColor: "grey",
-  }),
-  valueContainer: (provided, state) => ({
-    ...provided,
-    backgroundColor: "grey",
-  }),
+  //User search input
   input: (provided, state) => ({
     ...provided,
     color: "white",
   }),
+  //No stations found
   noOptionsMessage: (provided, state) => ({
     ...provided,
     color: "white",
   }),
+  //Selected station color
   singleValue: (provided, state) => ({
     ...provided,
     color: "white",

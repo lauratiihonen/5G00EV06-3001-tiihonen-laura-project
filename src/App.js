@@ -6,58 +6,50 @@ import customStyles from "./dropdownStyles.js";
 import stations from "./stations.js";
 
 function App() {
-  //const [fetchCity, setCity] = useState("");
   const [state, setState] = useState("hidden");
-  const [error, setError] = useState("");
-  const [departure, setDeparture] = useState("");
-  const [destination, setDestination] = useState("");
-  const [date, setDate] = useState("");
-  const [departureTime, setDepartureTime] = useState("");
-  const [destinationTime, setDestinationTime] = useState("");
+  const [error, setError] = useState([]);
+  const [departure, setDeparture] = useState([]);
+  const [destination, setDestination] = useState([]);
+  const [date, setDate] = useState([]);
+  const [departureTime, setDepartureTime] = useState([]);
+  const [destinationTime, setDestinationTime] = useState([]);
 
-  /*async function fetchCityNames() {
-    let hr = await fetch(
-      `https://rata.digitraffic.fi/api/v1/metadata/stations`
-    );
-    let cityNames = await hr.json();
-    var cities= [];
-    for (var i = 0; cityNames.length(); i++)
-      if (cityNames[i].passengerTraffic === "true") {
-        cities = [
-          {
-            value: `${cityNames[0].stationShortCode}`,
-            label: `${cityNames[0].stationName}`,
-          },
-        ];
-      }
-  }*/
-
+  /*
+  -Fetches departure time, arrival time and journey date from api
+  -Uses departure and destination from the user
+  */
   async function fetchJourney() {
-    setError("");
-    setDepartureTime("");
-    setDestinationTime("");
-    setDate("");
+    //Connect to API
     let hr = await fetch(
       `https://rata.digitraffic.fi/api/v1/live-trains/station/${departure}/${destination}`
     );
     let data = await hr.json();
+    //If data is undefined, throw error
     if (data[0] !== undefined) {
+      //Set journey info to visible
       setState("visible");
+      //Set journey date the current date
       setDate(data[0].departureDate);
+
+      //Loops until the end of the timetabelrows length from api
       for (var i = 0; i < Object.keys(data[0].timeTableRows).length; i++) {
         if (
+          //Checks if the station matches the selected station and also it needs to be the departure time, not arrival time
           data[0].timeTableRows[i].stationShortCode === departure &&
           data[0].timeTableRows[i].type === "DEPARTURE"
         ) {
+          //Takes only certain indexes from the date to convert it more readable
           var removetrash;
           removetrash = data[0].timeTableRows[i].scheduledTime;
           removetrash = removetrash.substring(11, 16);
           setDepartureTime(removetrash);
         }
         if (
+          //Checks if the station matches the selected station and the time needs to be arrival time, not departure time
           data[0].timeTableRows[i].stationShortCode === destination &&
           data[0].timeTableRows[i].type === "ARRIVAL"
         ) {
+          //Converts date more readable
           removetrash = data[0].timeTableRows[i].scheduledTime;
           removetrash = removetrash.substring(11, 16);
           setDestinationTime(removetrash);
@@ -73,6 +65,12 @@ function App() {
       <header className="App-header">
         <h1>Journey planner</h1>
       </header>
+      {/*
+      -Uses React Select in dropdown menu
+      -Uses options from ./stations.js
+      -OnChange, sets selected stations to departure and destination
+      -Uses custom style from ./dropdownstyles.js
+      */}
       <p className="App-dropdown">
         <Select
           styles={customStyles}
@@ -89,11 +87,21 @@ function App() {
           onChange={(event) => setDestination(event.value)}
         />
       </p>
+      {/*
+      -Calls fetchJourney function which connects to api
+      */}
       <button onClick={fetchJourney} className="App-button">
         Get Journey
       </button>
       <br />
+      {/*
+      -Show error if needed
+      */}
       <h2 className="App-error">{error}</h2>
+      {/*
+      -Visibility is hidden by default
+      -Upon calling fetchJourney function, visibility is changed to visible
+       */}
       <tbody style={{ visibility: state }} className="App-data">
         <h2 style={{ textAlign: "center" }}>
           {departure} - {destination}

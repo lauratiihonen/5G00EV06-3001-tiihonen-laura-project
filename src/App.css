@@ -1,10 +1,11 @@
 .App {
-  min-height: 100vh;
+  min-height: 80rem;
+  max-height: 100rem;
   text-align: center;
-  background-color: #282c34;
+  background-color: rosybrown;
   background-image: url("./backgrounds.jpg");
-  background-size: 60rem;
-  background-position-y: -7rem;
+  background-size: 170rem;
+  background-position-y: -80rem;
   background-repeat: no-repeat;
 }
 
@@ -53,6 +54,6 @@
 }
 
 .App-error {
-  color: "white";
-  text-shadow: -0.1rem 0.1rem 0.5rem palevioletred;
+  color: white;
+  text-shadow: -0.1rem 0.1rem 0.25rem palevioletred;
 }
