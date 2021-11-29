@@ -8,6 +8,8 @@ API: https://rata.digitraffic.fi/api/v1/live-trains/station/HKI/TPE
 
 Heroku link: https://journeyplannerproject.herokuapp.com/
 
+Youtube link: https://youtu.be/FbN6QZdAPgM
+
 ---
 
 Bugs: User can get journey from the same departure station to the same arrival station
