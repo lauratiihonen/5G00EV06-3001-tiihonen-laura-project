@@ -1,3 +1,4 @@
+// value is station shortcode which is used in api, but label is showed to the user, which makes it more readable
 const stations = [
   { value: "HKI", label: "Helsinki" },
   { value: "TPE", label: "Tampere" },

@@ -8,7 +8,6 @@ API: https://rata.digitraffic.fi/api/v1/live-trains/station/HKI/TPE
 
 Heroku link: https://journeyplannerproject.herokuapp.com/
 
-Youtube link: https://youtu.be/FbN6QZdAPgM
 google drive link: https://drive.google.com/file/d/16enSdr17ffO2NzmA65aNNdA86Cy_EBIl/view?usp=sharing
 
 ---
