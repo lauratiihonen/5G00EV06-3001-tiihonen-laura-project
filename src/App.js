@@ -19,9 +19,7 @@ function App() {
   -Uses departure and destination from the user
   */
   async function fetchJourney() {
-    setDate("");
-    setDepartureTime("");
-    setDestinationTime("");
+    setState("hidden");
     //Connect to API
     let hr = await fetch(
       `https://rata.digitraffic.fi/api/v1/live-trains/station/${departure}/${destination}`
